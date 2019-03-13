@@ -49,12 +49,9 @@ public class Services {
             if ((cDao.findClient(adresseMail)).equals(motDePasse)) {
                 connexion = true;
             }
-        } catch (Exception ex) {
-            DebugLogger.log("Exception");
-        }
+        } catch (Exception ex) {}
         JpaUtil.validerTransaction();
         JpaUtil.fermerEntityManager();
-        DebugLogger.log(connexion + "");
         return connexion;
     }
     
