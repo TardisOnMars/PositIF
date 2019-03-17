@@ -1,4 +1,4 @@
-package util;
+package fr.insalyon.dasi.positif.util;
 /**
  *
  * @author DASI Team

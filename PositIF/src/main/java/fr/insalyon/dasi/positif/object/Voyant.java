@@ -1,4 +1,5 @@
-package fr.insalyon.dasi.positif;
+package fr.insalyon.dasi.positif.object;
+
 
 public class Voyant extends Medium{
     private String specialite;

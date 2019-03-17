@@ -1,7 +1,10 @@
 package fr.insalyon.dasi.positif;
 
-import util.DebugLogger;
-import util.Message;
+import fr.insalyon.dasi.positif.object.Client;
+import fr.insalyon.dasi.positif.DAO.JpaUtil;
+import fr.insalyon.dasi.positif.DAO.ClientDAO;
+import fr.insalyon.dasi.positif.util.DebugLogger;
+import fr.insalyon.dasi.positif.util.Message;
 
 public class Services {
 

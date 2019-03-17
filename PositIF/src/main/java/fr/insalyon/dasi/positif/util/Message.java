@@ -1,4 +1,4 @@
-package util;
+package fr.insalyon.dasi.positif.util;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;

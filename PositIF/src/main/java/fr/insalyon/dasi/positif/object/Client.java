@@ -1,5 +1,6 @@
-package fr.insalyon.dasi.positif;
+package fr.insalyon.dasi.positif.object;
 
+import fr.insalyon.dasi.positif.util.Astro;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;

@@ -1,9 +1,10 @@
-package fr.insalyon.dasi.positif;
+package fr.insalyon.dasi.positif.DAO;
 
+import fr.insalyon.dasi.positif.object.Client;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import util.DebugLogger;
+import fr.insalyon.dasi.positif.util.DebugLogger;
 
 public class ClientDAO {
 

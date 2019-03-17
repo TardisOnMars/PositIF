@@ -1,5 +1,5 @@
 
-package fr.insalyon.dasi.positif;
+package fr.insalyon.dasi.positif.object;
 
 import java.util.List;
 import javax.persistence.Entity;

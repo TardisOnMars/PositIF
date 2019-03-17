@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.insalyon.dasi.positif;
+package fr.insalyon.dasi.positif.util;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

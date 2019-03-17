@@ -1,11 +1,25 @@
-package fr.insalyon.dasi.positif;
+package fr.insalyon.dasi.positif.object;
 
-public class Medium {
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public abstract class Medium {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private String nom;
     private String talent;
     private String description;
 
     public Medium() {
+    }
+
+    public Medium(String nom, String talent, String description) {
+        this.nom = nom;
+        this.talent = talent;
+        this.description = description;
     }
 
     public String getNom() {
@@ -31,5 +45,5 @@ public class Medium {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
 }

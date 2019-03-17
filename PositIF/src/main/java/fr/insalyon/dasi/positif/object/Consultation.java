@@ -1,4 +1,4 @@
-package fr.insalyon.dasi.positif;
+package fr.insalyon.dasi.positif.object;
 
 import java.util.Date;
 
