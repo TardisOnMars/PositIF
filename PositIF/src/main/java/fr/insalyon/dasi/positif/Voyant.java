@@ -5,6 +5,11 @@ public class Voyant extends Medium{
 
     public Voyant() {
     }
+    
+    public Voyant(String specialite){
+        super();
+        this.specialite = specialite;
+    }
 
     public String getSpecialite() {
         return specialite;

@@ -7,6 +7,12 @@ public class Astrologue extends Medium{
     public Astrologue() {
     }
 
+    public Astrologue(String formation, String promotion) {
+        super();
+        this.formation = formation;
+        this.promotion = promotion;
+    }
+    
     public String getFormation() {
         return formation;
     }
