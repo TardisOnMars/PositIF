@@ -1,31 +1,36 @@
 
-package fr.insalyon.dasi.positif.object;
+package fr.insalyon.dasi.positif.Metier;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
-public class Employe {
+public class Employe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
     private String Nom ;
     private String Prenom ;
-    private List<String> MediumCorres;  
     private String MotDePasse;
     private String AdresseMail;
     private Boolean Disponibilite;
     private String Type;
+    @OneToMany
+    private List<Medium> MediumCorres;
+    @OneToMany(mappedBy = "consultation")
+    private List<Consultation> LConsult;
     
    
     public Employe(){}
 
-    public Employe(String Nom, String Prenom, List<String> MediumCorres, String MotDePasse, String AdresseMail, Boolean Disponibilite, String Type) {
+    public Employe(String Nom, String Prenom, List<Medium> MediumCorres, String MotDePasse, String AdresseMail, Boolean Disponibilite, String Type) {
         this.Nom = Nom;
         this.Prenom = Prenom;
         this.MediumCorres = MediumCorres;
@@ -52,11 +57,11 @@ public class Employe {
         this.Prenom = Prenom;
     }
 
-    public List<String> getMediumCorres() {
+    public List<Medium> getMediumCorres() {
         return MediumCorres;
     }
 
-    public void setMediumCorres(List<String> MediumCorres) {
+    public void setMediumCorres(List<Medium> MediumCorres) {
         this.MediumCorres = MediumCorres;
     }
 

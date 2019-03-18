@@ -1,6 +1,6 @@
 package fr.insalyon.dasi.positif;
 
-import fr.insalyon.dasi.positif.object.Client;
+import fr.insalyon.dasi.positif.Metier.Client;
 import fr.insalyon.dasi.positif.DAO.JpaUtil;
 import fr.insalyon.dasi.positif.DAO.ClientDAO;
 import fr.insalyon.dasi.positif.util.DebugLogger;

@@ -1,6 +1,6 @@
 package fr.insalyon.dasi.positif.DAO;
 
-import fr.insalyon.dasi.positif.object.Client;
+import fr.insalyon.dasi.positif.Metier.Client;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

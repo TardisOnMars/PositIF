@@ -1,7 +1,8 @@
-package fr.insalyon.dasi.positif.object;
+package fr.insalyon.dasi.positif.Metier;
 
 import fr.insalyon.dasi.positif.util.Astro;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -9,20 +10,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Client {
+public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String civilite;
     private String nom;
     private String prenom;
-
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
     private String adressePost;
@@ -33,6 +33,8 @@ public class Client {
     private String colBonheur;
     private String animalTotem;
     private String motDePasse;
+    @OneToMany(mappedBy = "consultation")
+    private List<Consultation> LConsult;
 
     public Client() {
     }
