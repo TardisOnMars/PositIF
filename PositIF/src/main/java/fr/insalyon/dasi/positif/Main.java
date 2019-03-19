@@ -1,5 +1,6 @@
 package fr.insalyon.dasi.positif;
-import fr.insalyon.dasi.positif.Metier.Client;
+import fr.insalyon.dasi.positif.Metier.Service.Services;
+import fr.insalyon.dasi.positif.Metier.Modele.Client;
 import fr.insalyon.dasi.positif.DAO.JpaUtil;
 import java.util.Date;
 

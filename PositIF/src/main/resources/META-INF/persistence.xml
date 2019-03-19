@@ -2,8 +2,12 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="PositIFPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>fr.insalyon.dasi.positif.Metier.Employe</class>
-    <class>fr.insalyon.dasi.positif.Metier.Client</class>
+    <class>fr.insalyon.dasi.positif.Metier.Modele.Employe</class>
+    <class>fr.insalyon.dasi.positif.Metier.Modele.Client</class>
+    <class>fr.insalyon.dasi.positif.Metier.Modele.Medium</class>
+    <class>fr.insalyon.dasi.positif.Metier.Modele.Voyant</class>
+    <class>fr.insalyon.dasi.positif.Metier.Modele.Tarologue</class>
+    <class>fr.insalyon.dasi.positif.Metier.Modele.Astrologue</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/PositIFDB"/>
       <property name="javax.persistence.jdbc.user" value="svillenave"/>

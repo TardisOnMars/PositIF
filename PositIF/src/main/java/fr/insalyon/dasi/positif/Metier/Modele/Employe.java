@@ -1,5 +1,5 @@
 
-package fr.insalyon.dasi.positif.Metier;
+package fr.insalyon.dasi.positif.Metier.Modele;
 
 import java.io.Serializable;
 import java.util.List;

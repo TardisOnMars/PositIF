@@ -1,14 +1,18 @@
-package fr.insalyon.dasi.positif.Metier;
+package fr.insalyon.dasi.positif.Metier.Modele;
 
-public class Astrologue extends Medium{
+import java.io.Serializable;
+import javax.persistence.Entity;
+
+@Entity
+public class Astrologue extends Medium implements Serializable{
     private String formation;
     private String promotion;
 
     public Astrologue() {
     }
 
-    public Astrologue(String formation, String promotion) {
-        super();
+    public Astrologue(String nom, String description, String formation, String promotion) {
+        super(nom, "Astrologue", description);
         this.formation = formation;
         this.promotion = promotion;
     }

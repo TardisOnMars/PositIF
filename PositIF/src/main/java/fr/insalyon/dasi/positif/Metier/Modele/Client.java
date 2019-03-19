@@ -1,4 +1,4 @@
-package fr.insalyon.dasi.positif.Metier;
+package fr.insalyon.dasi.positif.Metier.Modele;
 
 import fr.insalyon.dasi.positif.util.Astro;
 import java.io.IOException;

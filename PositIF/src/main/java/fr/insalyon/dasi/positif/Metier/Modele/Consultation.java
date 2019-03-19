@@ -1,8 +1,7 @@
-package fr.insalyon.dasi.positif.Metier;
+package fr.insalyon.dasi.positif.Metier.Modele;
 
 import java.util.Date;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 public class Consultation {
     private Date dateConsultation;

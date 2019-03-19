@@ -1,14 +1,16 @@
-package fr.insalyon.dasi.positif.Metier;
+package fr.insalyon.dasi.positif.Metier.Modele;
 
+import javax.persistence.Entity;
 
+@Entity
 public class Voyant extends Medium{
     private String specialite;
 
     public Voyant() {
     }
     
-    public Voyant(String specialite){
-        super();
+    public Voyant(String nom, String description, String specialite){
+        super(nom, "Voyant", description);
         this.specialite = specialite;
     }
 
