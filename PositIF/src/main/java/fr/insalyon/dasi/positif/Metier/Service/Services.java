@@ -22,7 +22,7 @@ public class Services {
             JpaUtil.ouvrirTransaction();
             cDao.persistClient(client);
             JpaUtil.validerTransaction();
-            Message.envoyerMail("PositIF", client.getAdresseMail(), "Création de compte réussie", "Bienvenue chez PositIF !");
+            Message.envoyerMail("PositIF", client.getAdresseMail(), "Création de compte réussie", "Bienvenue chez PositIF ! \nVotre numéro client est : "+client.getId());
         } catch (RollbackException ex) {
             Message.envoyerMail("PositIF", client.getAdresseMail(), "Création de compte échouée", "Veuillez réessayer ultérieurement.");
         } finally {
@@ -80,6 +80,14 @@ public class Services {
             JpaUtil.fermerEntityManager();
         }
         return connexion;
+    }
+    
+    public void creerConsultation(){
+        
+    }
+    
+    public void finirConsultation(){
+        
     }
     
     

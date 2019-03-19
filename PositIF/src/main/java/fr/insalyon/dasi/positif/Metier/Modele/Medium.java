@@ -19,7 +19,7 @@ public abstract class Medium implements Serializable {
     private String nom;
     private String talent;
     private String description;
-    @OneToMany(mappedBy = "consultation")
+    @OneToMany(mappedBy = "medium")
     private List<Consultation> LConsult;
 
     public Medium() {

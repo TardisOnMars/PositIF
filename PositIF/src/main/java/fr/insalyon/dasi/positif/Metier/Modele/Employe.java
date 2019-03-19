@@ -24,7 +24,7 @@ public class Employe implements Serializable {
     private String Type;
     @OneToMany
     private List<Medium> MediumCorres;
-    @OneToMany(mappedBy = "consultation")
+    @OneToMany(mappedBy = "employe")
     private List<Consultation> LConsult;
     
    
