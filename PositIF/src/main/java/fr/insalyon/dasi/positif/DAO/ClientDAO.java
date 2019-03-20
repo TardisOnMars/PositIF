@@ -17,6 +17,11 @@ public class ClientDAO {
         em.persist(client);
     }
 
+    public Client mergeClient(Client client) {
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        return em.merge(client);
+    }
+
     public void detruireClient(Long id) {
         EntityManager em = JpaUtil.obtenirEntityManager();
         em.remove(em.getReference(Client.class, id));
@@ -27,12 +32,12 @@ public class ClientDAO {
         return em.find(Client.class, id);
     }
 
-    public String findClient(String adresseMail) {
+    public Client findClient(String adresseMail) {
         EntityManager em = JpaUtil.obtenirEntityManager();
         String jpql = "select c from Client c where c.adresseMail = :adresseMail";
         Query query = em.createQuery(jpql);
         query.setParameter("adresseMail", adresseMail);
-        String resultat = ((Client)query.getSingleResult()).getMotDePasse();
+        Client resultat = (Client) query.getSingleResult();
         return resultat;
     }
 

@@ -16,6 +16,11 @@ public class EmployeDAO {
         em.persist(employe);
     }
     
+    public Employe mergeEmploye(Employe employe){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        return em.merge(employe);
+    }
+    
     public void detruireEmploye(Long id){
         EntityManager em = JpaUtil.obtenirEntityManager();
         em.remove(em.getReference(Employe.class, id));

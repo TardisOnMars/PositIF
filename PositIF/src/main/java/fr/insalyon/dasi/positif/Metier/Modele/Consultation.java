@@ -27,7 +27,7 @@ public class Consultation implements Serializable {
     private Employe employe;
     @ManyToOne
     private Medium medium;
-    @OneToMany(mappedBy = "consultation")
+    @OneToMany
     private List<Prediction> predictions;
 
     public Consultation() {

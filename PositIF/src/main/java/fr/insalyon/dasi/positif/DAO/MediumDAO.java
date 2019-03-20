@@ -14,7 +14,12 @@ public class MediumDAO {
         EntityManager em = JpaUtil.obtenirEntityManager();
         em.persist(medium);
     }
-
+    
+    public Medium mergeMedium(Medium medium){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        return em.merge(medium);
+    }
+    
     public void detruireMedium(Long id) {
         EntityManager em = JpaUtil.obtenirEntityManager();
         em.remove(em.getReference(Medium.class, id));
@@ -27,7 +32,7 @@ public class MediumDAO {
     
     public List<Medium> findMedium() {
         EntityManager em = JpaUtil.obtenirEntityManager();
-        String everyone = "select m from Medium m";
+        String everyone = "select m from Medium m order by m.nom";
         Query query = em.createQuery(everyone);
         return (List<Medium>) query.getResultList();
     }

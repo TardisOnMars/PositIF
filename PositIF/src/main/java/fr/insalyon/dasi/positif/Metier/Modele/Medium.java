@@ -2,13 +2,13 @@ package fr.insalyon.dasi.positif.Metier.Modele;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -16,11 +16,10 @@ public abstract class Medium implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String nom;
     private String talent;
     private String description;
-    @OneToMany(mappedBy = "medium")
-    private List<Consultation> LConsult;
 
     public Medium() {
     }
@@ -54,5 +53,4 @@ public abstract class Medium implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

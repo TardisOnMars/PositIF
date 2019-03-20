@@ -33,8 +33,6 @@ public class Client implements Serializable {
     private String colBonheur;
     private String animalTotem;
     private String motDePasse;
-    @OneToMany(mappedBy = "client")
-    private List<Consultation> LConsult;
 
     public Client() {
     }

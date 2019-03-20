@@ -17,6 +17,9 @@ public class Prediction implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Integer lvlAmour;
+    private Integer lvlSante;
+    private Integer lvlTravail;
     private String amour;
     private String sante;
     private String travail;
@@ -26,11 +29,14 @@ public class Prediction implements Serializable {
     public Prediction() {
     }
 
-    public Prediction(Consultation consultation) {
+    public Prediction(Consultation consultation, Integer lvlAmour, Integer lvlSante, Integer lvlTravail) {
         this.consultation = consultation;
+        this.lvlAmour = lvlAmour;
+        this.lvlSante = lvlSante;
+        this.lvlTravail = lvlTravail;
         Astro a = new Astro();
         try {
-            List<String> result = a.getPredictions(consultation.getClient().getColBonheur(), consultation.getClient().getAnimalTotem(), 1, 1, 1); //On doit récuperer les chiffres depuis le front !!!!
+            List<String> result = a.getPredictions(consultation.getClient().getColBonheur(), consultation.getClient().getAnimalTotem(), lvlAmour, lvlSante, lvlTravail); //On doit récuperer les chiffres depuis le front !!!!
             amour = result.get(0);
             sante = result.get(1);
             travail = result.get(2);

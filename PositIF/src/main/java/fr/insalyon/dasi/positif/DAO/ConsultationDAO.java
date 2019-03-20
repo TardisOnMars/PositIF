@@ -10,12 +10,17 @@ public class ConsultationDAO {
     public ConsultationDAO() {
     }
     
-    public void persistConsultaion(Consultation consultation) {
+    public void persistConsultation(Consultation consultation) {
         EntityManager em = JpaUtil.obtenirEntityManager();
         em.persist(consultation);
     }
-
-    public void detruireConsultaion(Long id) {
+    
+    public Consultation mergeConsultation(Consultation consultation) {
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        return em.merge(consultation);
+    }
+    
+    public void detruireConsultation(Long id) {
         EntityManager em = JpaUtil.obtenirEntityManager();
         em.remove(em.getReference(Consultation.class, id));
     }
