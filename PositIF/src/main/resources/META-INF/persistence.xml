@@ -9,7 +9,6 @@
     <class>fr.insalyon.dasi.positif.Metier.Modele.Tarologue</class>
     <class>fr.insalyon.dasi.positif.Metier.Modele.Astrologue</class>
     <class>fr.insalyon.dasi.positif.Metier.Modele.Consultation</class>
-    <class>fr.insalyon.dasi.positif.Metier.Modele.Prediction</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/PositIFDB"/>
       <property name="javax.persistence.jdbc.user" value="svillenave"/>

@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,8 +26,6 @@ public class Consultation implements Serializable {
     private Employe employe;
     @ManyToOne
     private Medium medium;
-    @OneToMany
-    private List<Prediction> predictions;
 
     public Consultation() {
     }
@@ -87,13 +84,4 @@ public class Consultation implements Serializable {
     public void setMedium(Medium medium) {
         this.medium = medium;
     }
-
-    public List<Prediction> getPredictions() {
-        return predictions;
-    }
-
-    public void setPredictions(List<Prediction> predictions) {
-        this.predictions = predictions;
-    }   
-    
 }

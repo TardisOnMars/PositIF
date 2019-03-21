@@ -25,8 +25,6 @@ public class Employe implements Serializable {
     private Boolean Disponibilite;
     @ManyToMany
     private List<Medium> MediumCorres;
-    @OneToMany
-    private List<Consultation> LConsult;
 
     public Employe() {
     }
@@ -99,14 +97,6 @@ public class Employe implements Serializable {
 
     public void setDisponibilite(Boolean Disponibilite) {
         this.Disponibilite = Disponibilite;
-    }
-
-    public List<Consultation> getLConsult() {
-        return LConsult;
-    }
-
-    public void setLConsult(List<Consultation> LConsult) {
-        this.LConsult = LConsult;
     }
 
 }

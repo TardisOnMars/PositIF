@@ -1,5 +1,6 @@
 package fr.insalyon.dasi.positif.DAO;
 
+import fr.insalyon.dasi.positif.Metier.Modele.Consultation;
 import fr.insalyon.dasi.positif.Metier.Modele.Employe;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -41,5 +42,13 @@ public class EmployeDAO {
         String everyone = "select c from Employe c";
         Query query = em.createQuery(everyone);
         return (List<Employe>) query.getResultList();
+    }
+    
+    public List<Consultation> findConsultationOfEmploye(Employe e){
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        String jpql = "select c from Consultation c where c.employe = :e";
+        Query query = em.createQuery(jpql);
+        query.setParameter("e", e);
+        return (List<Consultation>) query.getResultList();
     }
 }

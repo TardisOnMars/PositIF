@@ -175,7 +175,17 @@ public class Services {
         }
         int min = -1;
         for (Employe empDispo : lEmpDispo) {
-            int nbConsult = empDispo.getLConsult().size();
+            int nbConsult = 0;
+            try {
+                JpaUtil.creerEntityManager();
+                JpaUtil.ouvrirTransaction();
+                nbConsult = eDao.findConsultationOfEmploye(empDispo).size();
+                JpaUtil.validerTransaction();
+            } catch (RollbackException ex) {
+                DebugLogger.log("La recherche des consultations de l'employe a échouée");
+            } finally {
+                JpaUtil.fermerEntityManager();
+            }
             if (min == -1 || nbConsult <= min) {
                 min = nbConsult;
                 e = empDispo;
@@ -206,21 +216,10 @@ public class Services {
     public void commencerConsultation(Consultation consult) {
         Client c = consult.getClient();
         Employe e = consult.getEmploye();
-        EmployeDAO eDao = new EmployeDAO();
         Medium m = consult.getMedium();
-        e.getLConsult().add(consult);
-        try {
-            JpaUtil.creerEntityManager();
-            JpaUtil.ouvrirTransaction();
-            e = eDao.mergeEmploye(e);
-            JpaUtil.validerTransaction();
-            Message.envoyerNotification(c.getNumTel(), "Votre demande de voyance du " + consult.getDateConsultation() + " a bien été enregistrée."
-                    + "\nVous pouvez dès à présent me contacter au " + e.getNumTel() + ". A tout de suite ! \nPosit'ifement vôtre, " + m.getNom());
-        } catch (RollbackException ex) {
-            DebugLogger.log("La consultation n'a pas pu commencer.");
-        } finally {
-            JpaUtil.fermerEntityManager();
-        }
+
+        Message.envoyerNotification(c.getNumTel(), "Votre demande de voyance du " + consult.getDateConsultation() + " a bien été enregistrée."
+                + "\nVous pouvez dès à présent me contacter au " + e.getNumTel() + ". A tout de suite ! \nPosit'ifement vôtre, " + m.getNom());
     }
 
     public void finirConsultation(Consultation consult, String commentaire) {
