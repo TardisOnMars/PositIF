@@ -24,9 +24,6 @@ public class Prediction implements Serializable {
     @ManyToOne
     private Consultation consultation;
 
-    public Prediction() {
-    }
-
     public Prediction(Consultation consultation, Integer lvlAmour, Integer lvlSante, Integer lvlTravail) {
         this.consultation = consultation;
         this.lvlAmour = lvlAmour;
@@ -34,7 +31,7 @@ public class Prediction implements Serializable {
         this.lvlTravail = lvlTravail;
         Astro a = new Astro();
         try {
-            List<String> result = a.getPredictions(consultation.getClient().getColBonheur(), consultation.getClient().getAnimalTotem(), lvlAmour, lvlSante, lvlTravail); //On doit récuperer les chiffres depuis le front !!!!
+            List<String> result = a.getPredictions(consultation.getClient().getColBonheur(), consultation.getClient().getAnimalTotem(), lvlAmour, lvlSante, lvlTravail);
             amour = result.get(0);
             sante = result.get(1);
             travail = result.get(2);

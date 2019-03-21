@@ -10,6 +10,7 @@ import fr.insalyon.dasi.positif.Metier.Modele.Astrologue;
 import fr.insalyon.dasi.positif.Metier.Modele.Consultation;
 import fr.insalyon.dasi.positif.Metier.Modele.Employe;
 import fr.insalyon.dasi.positif.Metier.Modele.Medium;
+import fr.insalyon.dasi.positif.Metier.Modele.Prediction;
 import fr.insalyon.dasi.positif.Metier.Modele.Tarologue;
 import fr.insalyon.dasi.positif.Metier.Modele.Voyant;
 import fr.insalyon.dasi.positif.util.DebugLogger;
@@ -239,5 +240,14 @@ public class Services {
         } finally {
             JpaUtil.fermerEntityManager();
         }
+    }
+    
+    public List<String> genererPredictions(Consultation c, Integer lvlAmour, Integer lvlSante, Integer lvlTravail){
+        Prediction p = new Prediction(c, lvlAmour, lvlSante, lvlTravail);
+        List<String> lPredictions = new LinkedList<>();
+        lPredictions.add(p.getAmour());
+        lPredictions.add(p.getSante());
+        lPredictions.add(p.getTravail());
+        return lPredictions;
     }
 }
