@@ -19,8 +19,8 @@ public class Main {
         Services s = new Services();
         s.init();
         //TestCreationClient
-        s.CreerClient(c0);
-        s.CreerClient(c1);
+       // s.CreerClient(c0);
+       // s.CreerClient(c1);
         //TestConnexionClient
         c2 = s.ConnecterUtilisateur("sophie.villenave@insa-lyon.fr", "mdp");
         DebugLogger.log("Connexion effectuée. Nom du client connecté : " + c2.getNom() + " " + c2.getPrenom());
@@ -40,6 +40,10 @@ public class Main {
             //TestFinirConsultation
             s.finirConsultation(co1, "Le client est charmé !");
         }
+        // Je ne sais pas si on a besoin d'une service pour faire les redirections.
+        s.genererHistoriqueClient(c2);
+        s.PopulatiteMedium();
+        s.RepartitionEmploye();
         JpaUtil.destroy();
     }
 

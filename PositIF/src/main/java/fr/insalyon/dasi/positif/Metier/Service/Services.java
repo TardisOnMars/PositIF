@@ -235,6 +235,7 @@ public class Services {
             coDao.mergeConsultation(consult);
             e = eDao.mergeEmploye(e);
             JpaUtil.validerTransaction();
+             DebugLogger.log("Votre commentaire a été bien enregistrée.");
         } catch (RollbackException ex) {
             DebugLogger.log("La consultation n'a pas pu être terminée");
         } finally {
@@ -250,4 +251,138 @@ public class Services {
         lPredictions.add(p.getTravail());
         return lPredictions;
     }
+    
+    public List<Consultation> genererHistoriqueClient(Client c){
+        List<Consultation> lHistorique = new LinkedList<>();
+        List<Consultation> lCon = new LinkedList<>();
+        ConsultationDAO conDao = new ConsultationDAO();
+        
+        
+        try {
+            JpaUtil.creerEntityManager();
+            JpaUtil.ouvrirTransaction();
+            lCon = conDao.findConsultation();// Obtenir une table qui contient tous les consultations terminees
+            JpaUtil.validerTransaction();
+        } catch (RollbackException ex) {
+            DebugLogger.log("Demander Historique client Echoee");
+            lHistorique = null;
+        } finally {
+            JpaUtil.fermerEntityManager();
+        }
+        
+        for(Consultation co1:lCon)
+        {
+            DebugLogger.log("Je suis dans la boucle !!!!!!!!!!!!!!!");
+            if(co1.getClient().equals(c))
+            {
+                lHistorique.add(co1);
+                 DebugLogger.log("Demander Historique client Terminee");
+            }
+        }
+        
+        for(Consultation co:lHistorique){
+        DebugLogger.log("Client:"+c.getNom()+"Consultation avec:"+co.getEmploye().getNom()+"\r");
+        }
+        
+        return lHistorique;
+    }
+    
+    public String AffectationEmploye(Employe e){
+        
+        
+        
+        
+        return null ;
+    }
+    
+    public List<Integer> PopulatiteMedium(){
+        List<Integer> lPopMedium = new LinkedList<>();
+        ConsultationDAO conDao = new ConsultationDAO();
+        MediumDAO mDao = new MediumDAO();
+        List<Medium> lM = new LinkedList<>();
+        List<Consultation> lCon = new LinkedList<>();
+        
+        
+        try {
+            JpaUtil.creerEntityManager();
+            JpaUtil.ouvrirTransaction();
+            lM = mDao.findMedium();
+            lCon = conDao.findConsultation();
+           // DebugLogger.log("PopulariteMedium generee");
+            JpaUtil.validerTransaction();
+        } catch (RollbackException ex) {
+           // DebugLogger.log("Generation de populariteMedium Echoee");
+        } finally {
+            JpaUtil.fermerEntityManager();
+        }
+        Integer Pop = 0;
+        for(Medium m : lM)
+            {
+                for(Consultation con : lCon)
+                {
+                    if(con.getMedium().equals(m))
+                    {
+                        Pop++;
+                    }
+                }
+                lPopMedium.add(Pop);
+                Pop = 0;
+            }
+        for(Medium pop: lM)
+        {
+            DebugLogger.log("Medium:"+pop.getNom()+" ");
+        }
+        for(Integer pop: lPopMedium)
+        {
+            DebugLogger.log("Popularite:"+pop+"\r");
+        }
+        return lPopMedium;
+    }
+    
+    public List<Integer> RepartitionEmploye(){
+         List<Integer> lPopEmploye = new LinkedList<>();
+         EmployeDAO emDao = new EmployeDAO();
+         ConsultationDAO conDao = new ConsultationDAO();
+         List<Employe> lEm = new LinkedList<>();
+         List<Consultation> lCon = new LinkedList<>();
+         
+          try {
+            JpaUtil.creerEntityManager();
+            JpaUtil.ouvrirTransaction();
+            lEm = emDao.findEmploye();
+            lCon = conDao.findConsultation();
+           // DebugLogger.log("PopulariteMedium generee");
+            JpaUtil.validerTransaction();
+        } catch (RollbackException ex) {
+           // DebugLogger.log("Generation de populariteMedium Echoee");
+        } finally {
+            JpaUtil.fermerEntityManager();
+        }
+          Integer Pop = 0;
+        for(Employe em : lEm)
+            {
+                for(Consultation con : lCon)
+                {
+                    if(con.getEmploye().equals(em))
+                    {
+                        Pop++;
+                    }
+                }
+                lPopEmploye.add(Pop);
+                Pop = 0;
+            }
+          for(Employe pop : lEm)
+        {
+            DebugLogger.log("Employe::"+pop.getNom()+" ");
+        }
+        for(Integer pop: lPopEmploye)
+        {
+            DebugLogger.log("Popularite:"+pop+"\r");
+        }
+         
+        return lPopEmploye;
+        
+    }
+        
+            
 }
