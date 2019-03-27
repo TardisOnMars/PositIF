@@ -33,6 +33,7 @@ public class Services {
         Medium m1 = new Tarologue("Mme Irma", "Comprenez votre entourage grâce à mes cartes ! Résultats rapides !");
         Medium m2 = new Astrologue("Serena", "Serena vous révèlera votre avenir pour éclairer votre passé", "ENS-Astro", "2006");
         Medium m3 = new Voyant("Pr Maxwell", "Votre avenir est devant vous : regardons-le ensemble !", "Marc de Café");
+        Medium m4 = new Voyant("Bob Ross", "Le futur est merveilleux !", "Peinture");
         Employe e1 = new Employe("Parker", "Peter", new LinkedList<>(), "mdp", "0611223344", "peter.parker@spidey.com", true);
         Employe e2 = new Employe("Gourmand", "Jamy", new LinkedList<>(), "mdp", "0612234567", "jamy.gourmand@cpassorcier.com", true);
         Employe e3 = new Employe("Tennant", "David", new LinkedList<>(), "mdp", "0699333231", "david.tennant@doctorwho.com", true);
@@ -52,6 +53,7 @@ public class Services {
             mDAO.persistMedium(m1);
             mDAO.persistMedium(m2);
             mDAO.persistMedium(m3);
+            mDAO.persistMedium(m4);
             eDAO.persistEmploye(e1);
             eDAO.persistEmploye(e2);
             eDAO.persistEmploye(e3);
@@ -79,7 +81,7 @@ public class Services {
         }
     }
 
-    public Client RecupererClient(Long id) {
+    public Client RecupererClient(Long id) { //Service inutile ! Utilisation de la connexion client
         ClientDAO cDao = new ClientDAO();
         Client c;
         try {
@@ -96,7 +98,7 @@ public class Services {
         return c;
     }
 
-    public Employe RecupererEmploye(Long id) {
+    public Employe RecupererEmploye(Long id) { //Service inutile ! Utilisation de la connexion employé
         EmployeDAO eDao = new EmployeDAO();
         Employe e;
         try {
@@ -113,14 +115,16 @@ public class Services {
         return e;
     }
 
-    public Client ConnecterUtilisateur(String adresseMail, String motDePasse) {
+    public Client connecterClient(String adresseMail, String motDePasse) {
         ClientDAO cDao = new ClientDAO();
         Client c = new Client();
         try {
             JpaUtil.creerEntityManager();
             JpaUtil.ouvrirTransaction();
-            if ((cDao.findClient(adresseMail).getMotDePasse()).equals(motDePasse)) {
+            if (cDao.findClient(adresseMail) != null && (cDao.findClient(adresseMail).getMotDePasse()).equals(motDePasse)) {
                 c = cDao.findClient(adresseMail);
+            }else{
+                c = null;
             }
             JpaUtil.validerTransaction();
         } catch (RollbackException ex) {
@@ -130,6 +134,27 @@ public class Services {
             JpaUtil.fermerEntityManager();
         }
         return c;
+    }
+    
+    public Employe connecterEmploye(String adresseMail, String motDePasse) {
+        EmployeDAO eDao = new EmployeDAO();
+        Employe e = new Employe();
+        try {
+            JpaUtil.creerEntityManager();
+            JpaUtil.ouvrirTransaction();
+            if (eDao.findEmploye(adresseMail) != null && (eDao.findEmploye(adresseMail).getMotDePasse()).equals(motDePasse)) {
+                e = eDao.findEmploye(adresseMail);
+            }else{
+                e = null;
+            }
+            JpaUtil.validerTransaction();
+        } catch (RollbackException ex) {
+            DebugLogger.log("Ce compte employé n'existe pas");
+            e = null;
+        } finally {
+            JpaUtil.fermerEntityManager();
+        }
+        return e;
     }
 
     public List<Medium> recupererMediums() {
@@ -273,7 +298,6 @@ public class Services {
         }
 
         for (Consultation co1 : lCon) {
-            DebugLogger.log("Je suis dans la boucle !!!!!!!!!!!!!!!");
             if (co1.getClient().equals(c)) {
                 lHistorique.add(co1);
                 DebugLogger.log("Demander Historique client Terminee");
@@ -287,12 +311,7 @@ public class Services {
         return lHistorique;
     }
 
-    public String AffectationEmploye(Employe e) {
-
-        return null;
-    }
-
-    public Map<Medium, Integer> PopulatiteMedium() {
+    public Map<Medium, Integer> populariteMedium() {
         Map<Medium, Integer> lPopMedium = new HashMap<>();
         ConsultationDAO conDao = new ConsultationDAO();
         MediumDAO mDao = new MediumDAO();
@@ -324,7 +343,7 @@ public class Services {
         return lPopMedium;
     }
 
-    public Map<Employe, Integer> RepartitionEmploye() {
+    public Map<Employe, Integer> repartitionEmploye() {
         Map<Employe, Integer> lPopEmploye = new HashMap<>();
         EmployeDAO emDao = new EmployeDAO();
         ConsultationDAO conDao = new ConsultationDAO();

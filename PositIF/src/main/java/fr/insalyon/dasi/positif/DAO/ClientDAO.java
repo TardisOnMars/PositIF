@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import fr.insalyon.dasi.positif.util.DebugLogger;
+import javax.persistence.NoResultException;
 
 public class ClientDAO {
 
@@ -33,11 +34,16 @@ public class ClientDAO {
     }
 
     public Client findClient(String adresseMail) {
+        Client resultat;
         EntityManager em = JpaUtil.obtenirEntityManager();
         String jpql = "select c from Client c where c.adresseMail = :adresseMail";
         Query query = em.createQuery(jpql);
         query.setParameter("adresseMail", adresseMail);
-        Client resultat = (Client) query.getSingleResult();
+        try{
+            resultat = (Client) query.getSingleResult();
+        }catch(NoResultException e){
+            resultat = null;
+        }
         return resultat;
     }
 

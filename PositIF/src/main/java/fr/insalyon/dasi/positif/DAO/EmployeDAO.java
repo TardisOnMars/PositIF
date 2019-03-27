@@ -4,6 +4,7 @@ import fr.insalyon.dasi.positif.Metier.Modele.Consultation;
 import fr.insalyon.dasi.positif.Metier.Modele.Employe;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 public class EmployeDAO {
@@ -33,8 +34,17 @@ public class EmployeDAO {
     }
     
     public Employe findEmploye(String adresseMail){
+        Employe resultat;
         EntityManager em = JpaUtil.obtenirEntityManager();
-        return em.find(Employe.class, adresseMail);
+        String jpql = "select e from Employe e where e.adresseMail = :adresseMail";
+        Query query = em.createQuery(jpql);
+        query.setParameter("adresseMail", adresseMail);
+        try{
+            resultat = (Employe) query.getSingleResult();
+        }catch(NoResultException e){
+            resultat = null;
+        }
+        return resultat;
     }
     
     public List<Employe> findEmploye(){

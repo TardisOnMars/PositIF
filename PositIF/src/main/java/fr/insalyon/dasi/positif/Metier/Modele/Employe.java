@@ -21,7 +21,7 @@ public class Employe implements Serializable {
     private String MotDePasse;
     private String numTel;
     @Column(unique = true)
-    private String AdresseMail;
+    private String adresseMail;
     private Boolean Disponibilite;
     @ManyToMany
     private List<Medium> MediumCorres;
@@ -35,7 +35,7 @@ public class Employe implements Serializable {
         this.MediumCorres = MediumCorres;
         this.MotDePasse = MotDePasse;
         this.numTel = numTel;
-        this.AdresseMail = AdresseMail;
+        this.adresseMail = AdresseMail;
         this.Disponibilite = Disponibilite;
     }
 
@@ -84,11 +84,11 @@ public class Employe implements Serializable {
     }
 
     public String getAdresseMail() {
-        return AdresseMail;
+        return adresseMail;
     }
 
     public void setAdresseMail(String AdresseMail) {
-        this.AdresseMail = AdresseMail;
+        this.adresseMail = AdresseMail;
     }
 
     public Boolean getDisponibilite() {
